@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# Shutdown the device
+
+ssh loial "sudo shutdown"

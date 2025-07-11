@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Display a random file from the ./pictures directory
+
+local pictures=(./pictures/*)
+local randomPicture=${pictures[RANDOM % ${#pictures[@]}]}
+echo "Picking random picture ${randomPicture}"
+
+./display ${randomPicture:a}

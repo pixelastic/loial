@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+# Convert an image to the right format to be displayed
+# Usage:
+# ./format input.png ./output.png
+
+local input="$1"
+local output="$2"
+
+magick "$input" \
+  -set option:rotate "%[fx:h>w?90:0]" \
+  -rotate "%[rotate]" \
+  -resize 800x480 \
+  -background black \
+  -gravity center \
+  -extent 800x480 \
+  -colorspace Gray \
+  "$output"

@@ -4,5 +4,6 @@
 
 local gitRoot="$(git-directory-root)"
 watch-and-reload \
-  ${gitRoot}/src/* \
+  ${gitRoot}/main \
+  ${gitRoot}/display \
   "${gitRoot}/scripts/deploy && ${gitRoot}/scripts/run"

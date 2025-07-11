@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 # Run the code on the Raspberry Pi
 
-ssh loial 'python3 ./local/loial/src/main.py'
+ssh loial 'cd ./local/loial && ./main'

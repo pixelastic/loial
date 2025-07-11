@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-# Resize a picture to the right dimensions for display
-
-local input=$1
-
-convert dd.jpg -resize 800x480^ -gravity center -extent 800x480 dd-output.jpg

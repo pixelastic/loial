@@ -2,15 +2,16 @@
 # Deploy local code to the Raspberry Pi
 
 local sourcePath="$(git-directory-root)/"
-local destinationPath="loial:~/local/loial"
+local destinationPath="loial:./local/loial"
 
 rsync \
   -avz \
+  --include='/display' \
+  --include='/main' \
+  --include='/pictures/***' \
   --exclude='.git' \
   --exclude='__pycache__/' \
-  --include='/src/***' \
-  --exclude='data/src/***' \
-  --include='data/***' \
+  --include='/lib/***' \
   --exclude='*' \
   --delete \
   --progress \

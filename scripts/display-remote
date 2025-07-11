@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+# Display a specific image on the screen
+
+local input="$1"
+local basename=${input:t}
+local rootPath="$(git-directory-root)"
+
+# Convert the file and save it in local ./tmp folder
+local localPath="${rootPath}/tmp/${basename}"
+mkdir -p ./tmp
+${rootPath}/scripts/convert "$input" "${localPath}"
+
+# Copy the file to a remote ./tmp folder
+local remotePath="./tmp/${basename}"
+rsync \
+  -avz \
+  --mkpath \
+  "${localPath}" \
+  "loial:./local/loial/${remotePath}"
+
+ssh loial "cd ./local/loial && ./display ${remotePath}"

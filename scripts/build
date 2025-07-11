@@ -1,0 +1,38 @@
+#!/usr/bin/env zsh
+# Build the list of files in ./pictures based on files in ./sources
+
+local rootPath="$(git-directory-root)"
+local sourceDirectory=${rootPath}/sources
+local scriptsDirectory=${rootPath}/scripts
+local pictureDirectory=${rootPath}/pictures
+
+# Helpers {{{
+function convertPicture() {
+  local input="$1"
+  local basename="$2"
+  ${scriptsDirectory}/convert "$input" "${pictureDirectory}/${basename}"
+}
+
+
+# md5: Get the md5 hash of a file
+function getBasename() {
+  local input="$1"
+  local fileHash="$(echo -n "${input}" | md5sum | cut --delimiter ' ' --fields 1)"
+  local fileExtension=${input:e}
+  echo "${fileHash}.${fileExtension}"
+}
+# }}}
+
+
+for filepath in ${sourceDirectory}/*/*.{jpg,png}; do
+  local basename="$(getBasename "$filepath")"
+
+  # Skip if file already created
+  if [[ -f "${pictureDirectory}/${basename}" ]]; then
+    continue
+  fi
+
+  # If such a file already exists in the picture directory, we skip
+  convertPicture $filepath $basename
+  echo "✔ $basename added"
+done
