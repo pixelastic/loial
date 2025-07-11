@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# Randomly update the display on the remote
+
+local input="$1"
+local gitRoot="$(git-directory-root)"
+${gitRoot}/local/deploy
+ssh loial "cd ./local/loial && ./main"

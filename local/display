@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+# Display a specific image on the screen
+# Usage:
+# ./display ./path/to/file.jpg
+set -e
+local rootPath="$(cd "$(dirname "${0}")" && git pwd)"
+local input="$1"
+local basename=${input:t}
+local tmpPath="${rootPath}/tmp"
+local localPath="${rootPath}/local"
+
+# Convert the file and save it in local ./tmp folder
+mkdir -p $tmpPath
+local convertedPath="${tmpPath}/${basename}"
+${localPath}/convert "$input" "${convertedPath}"
+
+# Copy the file to a remote ./tmp folder
+local remotePath="/tmp/${basename}"
+rsync \
+  -avz \
+  --mkpath \
+  "${convertedPath}" \
+  "loial:${remotePath}"
+
+ssh loial "cd ./local/loial && ./display ${remotePath}"

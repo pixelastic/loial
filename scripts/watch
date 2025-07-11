@@ -1,9 +1,0 @@
-#!/usr/bin/env zsh
-# Watch for changes in src/, deploy and run
-
-
-local gitRoot="$(git-directory-root)"
-watch-and-reload \
-  ${gitRoot}/main \
-  ${gitRoot}/display \
-  "${gitRoot}/scripts/deploy && ${gitRoot}/scripts/run"

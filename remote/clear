@@ -1,0 +1,16 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# Import standard libraries
+import os
+import sys
+
+# Import Waveshare specific files
+from pathlib import Path
+libDirectory = str(Path(__file__).parent / 'lib')
+sys.path.append(libDirectory)
+from waveshare_epd import epd7in5_V2
+
+# Display
+epd = epd7in5_V2.EPD()
+epd.init()
+epd.Clear()

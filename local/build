@@ -2,15 +2,16 @@
 # Build the list of files in ./pictures based on files in ./sources
 
 local rootPath="$(git-directory-root)"
-local sourceDirectory=${rootPath}/sources
-local scriptsDirectory=${rootPath}/scripts
-local pictureDirectory=${rootPath}/pictures
+local localDirectory=${rootPath}/local
+local sourceDirectory=${localDirectory}/sources
+local remoteDirectory=${rootPath}/remote
+local pictureDirectory=${remoteDirectory}/pictures
 
 # Helpers {{{
 function convertPicture() {
   local input="$1"
   local basename="$2"
-  ${scriptsDirectory}/convert "$input" "${pictureDirectory}/${basename}"
+  ${localDirectory}/convert "$input" "${pictureDirectory}/${basename}"
 }
 
 

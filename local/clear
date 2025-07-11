@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# Clear the remote screen
+
+local input="$1"
+local gitRoot="$(git-directory-root)"
+${gitRoot}/local/deploy
+ssh loial "cd ./local/loial && ./clear"

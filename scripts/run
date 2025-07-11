@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-# Run the code on the Raspberry Pi
-
-ssh loial 'cd ./local/loial && ./main'

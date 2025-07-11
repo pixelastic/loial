@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Watch for changes in ./remote, deploy and run
+
+
+local gitRoot="$(git-directory-root)"
+watch-and-reload \
+  ${gitRoot}/remote/** \
+  "${gitRoot}/local/deploy && ${gitRoot}/local/run-remote ./main"

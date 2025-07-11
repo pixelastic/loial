@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+# Run a specific command on the remote
+# Usage:
+# ./run-remote ./main
+
+local input="$1"
+local gitRoot="$(git-directory-root)"
+${gitRoot}/local/deploy
+ssh loial "cd ./local/loial && $input"
