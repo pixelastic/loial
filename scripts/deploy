@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+# Deploy local code to the Raspberry Pi
+
+local sourcePath="$(git-directory-root)/"
+local destinationPath="loial:~/local/loial"
+
+rsync \
+  -avz \
+  --exclude='.git' \
+  --exclude='__pycache__/' \
+  --include='/src/***' \
+  --exclude='data/src/***' \
+  --include='data/***' \
+  --exclude='*' \
+  --delete \
+  --progress \
+  "$sourcePath" \
+  "$destinationPath"

@@ -3,9 +3,6 @@
 .envrc
 
 # Directories
-build/
-dist/
-node_modules/
 tmp/
 
 # Files
